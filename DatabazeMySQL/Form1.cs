@@ -29,8 +29,7 @@ namespace DatabazeMySQL {
         /// </summary>
         private void zobrazData() {
             try {
-                connection.Open();
-                cmd.CommandType = CommandType.Text;
+                connection.Open();                
                 cmd.CommandText = "select * from student";
                 cmd.ExecuteNonQuery();
                 DataTable dt = new();
@@ -59,8 +58,7 @@ namespace DatabazeMySQL {
         private void vlozData() {
             if (!string.IsNullOrEmpty(textBoxJmeno.Text) && !string.IsNullOrEmpty(textBoxPrijmeni.Text) && !string.IsNullOrEmpty(textBoxPohlavi.Text) && !string.IsNullOrEmpty(textBoxIdTrida.Text)) {
                 try {
-                    connection.Open();
-                    cmd.CommandType = CommandType.Text;
+                    connection.Open();                    
                     cmd.CommandText = "insert into student values('0','" + textBoxJmeno.Text + "','" + textBoxPrijmeni.Text + "','" + textBoxPohlavi.Text + "','" + textBoxIdTrida.Text + "')";
                     cmd.ExecuteNonQuery();
                     connection.Close();
@@ -131,8 +129,7 @@ namespace DatabazeMySQL {
         private bool hledejData() {
             if (sqlDotazHledej() != null) {
                 try {
-                    connection.Open();
-                    cmd.CommandType = CommandType.Text;
+                    connection.Open();                    
                     cmd.CommandText = sqlDotazHledej();
                     cmd.ExecuteNonQuery();
                     DataTable dt = new();
@@ -171,8 +168,7 @@ namespace DatabazeMySQL {
                     if (!string.IsNullOrEmpty(textBoxJmeno.Text) || !string.IsNullOrEmpty(textBoxPrijmeni.Text) || !string.IsNullOrEmpty(textBoxPohlavi.Text) || !string.IsNullOrEmpty(textBoxIdTrida.Text)) {
                         if (MessageBox.Show("Opravdu chceš upravit data v databázi?", "Výstraha", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
                             try {
-                                connection.Open();
-                                cmd.CommandType = CommandType.Text;
+                                connection.Open();                                
                                 if (!string.IsNullOrEmpty(textBoxJmeno.Text)) {
                                     cmd.CommandText = "update student set jmeno = '" + textBoxJmeno.Text + "' where id = '" + textBoxID.Text + "'";
                                     cmd.ExecuteNonQuery();
@@ -223,8 +219,7 @@ namespace DatabazeMySQL {
                 if (IdExistuje) {
                     if (MessageBox.Show("Opravdu chceš vymazat data z databáze?", "Výstraha", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
                         try {
-                            connection.Open();
-                            cmd.CommandType = CommandType.Text;
+                            connection.Open();                            
                             cmd.CommandText = "delete from student where id = '" + textBoxID.Text + "'";
                             cmd.ExecuteNonQuery();
                             connection.Close();
